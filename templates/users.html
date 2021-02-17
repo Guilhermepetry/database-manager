@@ -1,0 +1,23 @@
+{% extends 'bootstrap/base.html' %}
+<br />
+{% block content %}
+<br />
+<nav>
+  {% if current_user.is_authenticated %}
+  <a href="{{ url_for('register') }}">Registrar</a>
+  <a href="{{ url_for('logout') }}">Sair</a>
+  {% else %}
+  <a href="{{ url_for('login') }}">Login</a>
+  {% endif %}
+</nav>
+{% for user in users %}
+<ul>
+  <li>{{ user.name }}</li>
+  <li>
+    <a href='{{ url_for("unique", id=user.id) }}'>Visualizar</a>
+  </li>
+</ul>
+<br />
+{% endfor %}
+<br />
+{% endblock content %}
